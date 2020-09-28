@@ -31,18 +31,31 @@ public class Exercise3 {
                 }
             }
         }
+        c = delete_zero_element(c);
         c[0][2] = c.length - 1;
         return c;
     }
 
-    private static int search(int a[][], int x, int y) {
-        int b = -1;
-        for (int i = 1; i < a.length; i++)
-            if (a[i][0] == x && a[i][1] == y) {
-                b = i;
-                break;
+    private static int[][] delete_zero_element(int x[][]) {
+        int y[][] = new int[1][3];
+        for (int i = 1; i < x.length; i++) {
+            if (x[i][0] != 0) {
+                y = Arrays.copyOf(y, y.length + 1);
+                int a[] = new int[3];
+                a[0] = x[i][0];
+                a[1] = x[i][1];
+                a[2] = x[i][2];
+                y[y.length - 1] = a;
             }
-        return b;
+        }
+        return y;
+    }
+
+    private static int search(int a[][], int x, int y) {
+        for (int i = 1; i < a.length; i++)
+            if (a[i][0] == x && a[i][1] == y)
+                return i;
+        return -1;
     }
 
     private static void print(int a[][]) {
