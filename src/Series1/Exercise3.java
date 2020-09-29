@@ -11,6 +11,10 @@ public class Exercise3 {
     }
 
     private static int[][] multiply(int a[][], int b[][]) {
+        if (a[0][1] != b[0][0]) {
+            System.out.println("Matrices are non-multiplicative");
+            return null;
+        }
         int c[][] = new int[1][3];
         c[0][0] = a[0][0];
         c[0][1] = b[0][1];
