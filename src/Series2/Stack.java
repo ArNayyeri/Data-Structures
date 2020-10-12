@@ -3,7 +3,7 @@ package Series2;
 public class Stack {
     private int top;
     private final int size = 100;
-    private char[] items = new char[size];
+    private String[] items = new String[size];
 
     public Stack() {
         top = -1;
@@ -17,7 +17,7 @@ public class Stack {
         return top == size - 1;
     }
 
-    public void push(char x) {
+    public void push(String x) {
         if (isFull())
             System.out.println("Stack is Full!!!");
         else {
@@ -25,7 +25,7 @@ public class Stack {
         }
     }
 
-    public Character pop() {
+    public String pop() {
         if (isEmpty()) {
             System.out.println("Stack is empty!!");
             return null;
