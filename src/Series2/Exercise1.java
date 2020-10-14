@@ -3,8 +3,9 @@ package Series2;
 public class Exercise1 {
     public static void main(String[] args) {
         System.out.println(Infix_to_postfix("12 ^ 23 * 34 * 45 - ( ( 56 + 67 / 78 ) - 89 )"));
-        System.out.println(Infix_to_postfix("a*b+c*d"));
         System.out.println(calculate_postfix("12 12 + 12 12 + *"));
+        System.out.println(
+                calculate_postfix(Infix_to_postfix("61 + 12 - 4 * ( 31 ^ 22 * ( 81 - 11 ) / 32 + 41 - 21 ) * 55 ")));
     }
 
     public static String Infix_to_postfix(String x) {
@@ -76,36 +77,36 @@ public class Exercise1 {
         return aa < bb;
     }
 
-    public static int calculate_postfix(String x) {
+    public static double calculate_postfix(String x) {
         Stack stack = new Stack();
         for (int i = 0; i < x.length(); i++) {
             if (x.charAt(i) == ' ')
                 continue;
             if (x.charAt(i) >= '0' && x.charAt(i) <= '9') {
-                int a = 0;
+                String a = "";
                 do {
-                    a = a * 10 + Integer.parseInt(String.valueOf(x.charAt(i)));
+                    a += x.charAt(i);
                     i++;
                 } while (x.charAt(i) >= '0' && x.charAt(i) <= '9');
-                stack.push(String.valueOf(a));
+                stack.push(a);
                 i--;
             } else {
-                int p = Integer.parseInt(stack.pop().toString());
-                int q = Integer.parseInt(stack.pop().toString());
+                double p = Double.parseDouble(stack.pop());
+                double q = Double.parseDouble(stack.pop());
                 if (x.charAt(i) == '+')
-                    p += q;
+                    q += p;
                 else if (x.charAt(i) == '-')
-                    p -= q;
+                    q -= p;
                 else if (x.charAt(i) == '*')
-                    p *= q;
+                    q *= p;
                 else if (x.charAt(i) == '/')
-                    p /= q;
+                    q /= p;
                 else if (x.charAt(i) == '^')
-                    p = (int) Math.pow(p, q);
-                stack.push(String.valueOf(p));
+                    q = Math.pow(q, p);
+                stack.push(String.valueOf(q));
             }
         }
-        return Integer.parseInt(stack.pop());
+        return Double.parseDouble(stack.pop());
     }
 
 }
