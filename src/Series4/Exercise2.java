@@ -5,14 +5,14 @@ public class Exercise2 {
     public static boolean isPalindrome(ListNode first) {
         int n = count(first);
         ListNode node;
-        for (int i = 0; i < n / 2; i++) {
+        for (int i = 1; i <= n / 2; i++) {
             ListNode x = null;
             node = first;
-            for (int j = 0; node.next != null; j++) {
+            for (int j = 1; node != null; j++) {
                 if (j == i) {
                     x = node;
                 }
-                if (j == n - i - 1) {
+                if (j == n - i + 1) {
                     if (x.val != node.val)
                         return false;
                     break;
@@ -24,8 +24,8 @@ public class Exercise2 {
     }
 
     public static int count(ListNode first) {
-        int n = 1;
-        while (first.next != null) {
+        int n = 0;
+        while (first != null) {
             first = first.next;
             n++;
         }
